@@ -6,9 +6,9 @@
  // 9779345초 -> ?일 ?시간 ?분 ?초 변환 
 
  let test = 9779345;
- let seconds = test & 60; 
- let minutes = seconds / 60;
- let hours = test / 60 / 60 ; 
- let days = test / 60 / 60 / 24; 
+ let seconds = parseInt(test & 60); 
+ let minutes = parseInt(seconds % 60);
+ let hours = parseInt(test % 24 ); 
+ let days = parseInt(test / 60 / 60 / 24); 
 
- console.log(`${days}일 ${hours}시간 ${minutes}분 ${seconds1}초`)
+ console.log(`${days}일 ${hours}시간 ${minutes}분 ${seconds}초`)
