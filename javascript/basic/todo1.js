@@ -5,11 +5,15 @@
 */ 
  // 9779345초 -> ?일 ?시간 ?분 ?초 변환 
 
- let test = 9779345;
- let seconds = parseInt(test % 60) ; 
- let minutes = parseInt(test / 60 % 60 )  ;
- let hours = parseInt(test / 60 / 60 % 24); 
- let days = parseInt(test / 60 / 60 / 24 % 365); 
+while (true){
+  let num1 = prompt("숫자를 입력하세요");
+  let num2 = prompt("숫자를 입력하세요");
+  if (num2 == 'stop'){ 
+    break; 
+  }
 
+  result = num1 * num2; 
 
- console.log(`${days}일 ${hours}시간 ${minutes}분 ${seconds}초`)
+  console.log(result); 
+
+}
