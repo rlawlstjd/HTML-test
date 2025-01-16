@@ -34,6 +34,34 @@
   </table>  -->
 
   <script>
+
+    // 월 정보를 알려주면 공백 반환.
+    function getDays(month = 1){
+      if (month == 1){
+        return 3; 
+      } else if (month == 2 || month ==3){
+        return 6; 
+      } else if (month == 4){
+        return 2; 
+      } else if (month == 5){
+        return 4; 
+      }
+    }
+      // 월정보를 알려주면 말일 반환 
+      function getLastDate(month = 1){
+        if (month == 1 || month == 3 || month== 5){
+          return 31; 
+        } else if (month == 2){
+          return 23; 
+        } else {
+          return 30; 
+        }
+      }
+      // console.log(getDays(2), getLastDate(2)); 
+    
+    let mon = prompt("월을 입력해 주세요")
+    let space = getDays(2);
+    let lastDate = getLastDate(2);
     let days = ['일', '월', '화', '수', '목', '금', '토']; 
     let html = ''; 
     html += '<table border="1">';  // 오타주의 * 
@@ -47,15 +75,25 @@
     // }
     html += '</tr></thead>'
     html += '<tbody id="list"><tr>'; 
-      for (let i = 0; i<3; i++){
+      for (let i = 0; i<space; i++){ //공백 
         html += `<td></td>`
       }
-    for (let i = 1; i<=31; i++){
-      html += `<td>${i}</td>`; 
-      if((i+3) % 7 == 0){
-        html += `</tr><tr>`; 
+    for (let i = 1; i<=lastDate; i++){ // 날짜출력 
+      if ((i+space) % 7 == 0) {
+        html += `<td style= "background-color: blue; color: white;">${i}</td>`;
+        html += `</tr><tr>`;  
       } 
+      else if ((i+ space) % 7==1){
+        html += `<td style= "background-color: red; color: while;">${i}</td>`;
+      }  else {
+        html += `<td>${i}</td>`; 
+      }
     }
+     // if((i+3) % 7 == 0){
+       // html += `</tr><tr>`; 
+      //} 
+    //}
+    
     //html += '</tr>'
     
     /*for (let i=1; i<=4; i++){

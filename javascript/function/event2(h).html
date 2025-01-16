@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="show"></div>
+  <input type="number" id="calendar">
+  <button id="calendar">버튼</button>
+  <!-- <table border="1">
+    <thead></thead>
+    <tbody id="list">
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+      </tr>
+    </tbody>
+  </table> -->
+  <script>
+    // 달력버튼을 클릭하면 월정보를 입력받아서 화면에 출력하는 이벤트 
+   
+
+    let enter = document.querySelector('button');
+    enter.addEventListener('click', function(){
+      let month = parseInt(document.querySelector('input').value); 
+      switch (month){
+        case month: 
+            makeCalendar(month)
+            break; 
+       
+      }
+    });
+
+    function getDays(month = 1){
+      if(month == 1){
+        return 3;
+      }else if(month == 2){
+        return 6;
+      }else if(month == 3){
+        return 6;
+      }else if(month == 4){
+        return 2;
+      }else if(month == 5){
+        return 4;
+      }else if(month == 6){
+        return 0;
+      }
+    }
+      function getLastDays(month = 1){
+        if(month == 1){
+          return 31;
+        }else if(month ==2){
+          return 28;
+        }else if(month ==3){
+          return 30;
+        }else if(month ==4){
+          return 30;
+        }else if(month ==5){
+          return 30;
+        }else if(month ==6){
+          return 30;
+        }
+    }
+    
+    // console.log(getDays(2), getLastDays(2));
+    // 달력 출력 함수 . 
+
+  
+    function makeCalendar(month = 1){
+      
+     //let mon = prompt("월을 입력해 주세요")
+      let spaces = getDays(month)
+      let lastDate = getLastDays(month)
+      let days=['일','월','화','수','목','금','토'];
+      let html=''
+      
+      
+      html += `<table border="1">`;
+        html += `<cpation>${month}월</caption>`; 
+        html += `<thead><tr>`
+          for(let day of days){
+            html += `<th>${day}</th>`
+          }
+          html += `</tr></thead>`;  
+          html += `<tbody id="list"><tr>`
+            for(let i = 0; i<spaces;i++){
+              html += `<td></td>`}
+              for(let i = 1; i<=lastDate; i++){
+                if((i+spaces)%7==1){
+                  html += `<td style="background-color: red; color: white">${i}</td>`
+                }
+                else if((i+spaces)%7==0){
+                  html += `<td style="background-color: blue; color: white">${i}</td>`
+                  html += '</tr><tr>'
+                    
+                  }
+                  
+                  
+                  
+                  else{
+                    html += `<td>${i}</td>`
+                  }
+                  
+                }
+                
+                html += `</tr>`; 
+                html += `</tbody>`;  
+                html += `</table>`;  
+                document.querySelector('#show').innerHTML = html
+              }
+                </script>
+                
+                </body>
+                </html>
