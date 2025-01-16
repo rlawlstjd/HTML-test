@@ -1,0 +1,33 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  단: <input type="number" name="dan" id="" value="">
+  <button>구구단출력</button>
+  <div id="show"></div>
+  <script>
+    // 버튼에 클릭 이벤트 등록 - > 이벤트핸들러 (함수) , 단 정보(input)을 읽어와서 구구단 출력
+    let item = document.querySelector('button'); 
+    item.addEventListener('click', function(){
+        let input1 = document.querySelector('input').value; // 사용자가 입력했던 값 = value 
+        let html = "<p>"
+        for (let i=1; i<=9; i++){
+          console.log(`${input1} * ${i} = ${input1 * i}`);
+          html += `${input1} * ${i} = ${input1 * i} </p><p>`;  
+        }
+        html += `</p>`; 
+        console.log(html);  
+        //DOM객체란 ? 
+        document.querySelector('#show').innerHTML = html;
+    });
+
+    /*
+    복습요. 
+    */
+  </script>
+</body>
+</html>

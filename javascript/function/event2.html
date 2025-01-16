@@ -1,0 +1,73 @@
+<!DOCTYPE html>  
+<!-- 복습 요  -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="show"></div>
+  <!-- <table border="1"> -
+    <thead>
+      <tr>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+      </tr>
+    </tbody>
+  </table>  -->
+
+  <script>
+    let days = ['일', '월', '화', '수', '목', '금', '토']; 
+    let html = ''; 
+    html += '<table border="1">';  // 오타주의 * 
+    html += '<thead id="days"><tr>'
+        for (let day of days){
+          html += `<th>${day}</th>`; 
+        }
+   
+      // for (let i=0; i<days.length; i++){
+      // html += `<td>${days[i]}</td>`; 
+    // }
+    html += '</tr></thead>'
+    html += '<tbody id="list"><tr>'; 
+      for (let i = 0; i<3; i++){
+        html += `<td></td>`
+      }
+    for (let i = 1; i<=31; i++){
+      html += `<td>${i}</td>`; 
+      if((i+3) % 7 == 0){
+        html += `</tr><tr>`; 
+      } 
+    }
+    //html += '</tr>'
+    
+    /*for (let i=1; i<=4; i++){
+      html += '<tr>'
+        for(let i=1; i<=7; i++){
+          html += `<td>${i}</td>`
+        }
+        '</tr>'
+    }*/
+    html += '</tr></tbody>'; 
+    html += '</table>'; 
+    document.querySelector('#show').innerHTML = html; 
+  </script>
+</body>
+</html>

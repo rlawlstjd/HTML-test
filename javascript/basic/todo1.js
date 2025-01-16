@@ -10,10 +10,11 @@ while (true){
   let num2 = prompt("숫자를 입력하세요");
   if (num2 == 'stop'){ 
     break; 
+  } else {
+    alert (num1 * num2)
   }
 
-  result = num1 * num2; 
+  
 
-  console.log(result); 
-
+ 
 }
