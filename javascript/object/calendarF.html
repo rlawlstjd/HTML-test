@@ -28,8 +28,9 @@
     });
 
     // 달력 생성 함수
-    function makeCalendar(year = 2025, month = 1) {
+    function makeCalendar(year = 2025, month = 5) {
       const firstDay = new Date(year, month - 1, 1).getDay(); // 1일의 요일
+      console.log(firstDay); 
       const lastDate = new Date(year, month, 0).getDate(); // 해당 월의 마지막 날
 
       const days = ['일', '월', '화', '수', '목', '금', '토'];
