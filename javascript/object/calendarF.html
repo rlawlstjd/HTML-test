@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Calendar</title>
+</head>
+<body>
+  <label for="year">년도:</label>
+  <input type="number" name="year" id="year" value="2025"> 
+  <label for="month">월:</label>
+  <input type="number" id="month" value="1">
+  <button id="calendar">달력 생성</button>
+  <div id="show"></div>
+
+  <script>
+    // 달력 생성 버튼 클릭 이벤트 등록
+    document.querySelector('#calendar').addEventListener('click', function () {
+      const year = parseInt(document.querySelector('#year').value); // 선택한 년도
+      const month = parseInt(document.querySelector('#month').value); // 선택한 월
+
+      if (isNaN(year) || isNaN(month) || month < 1 || month > 12) {
+        alert("올바른 년도와 월을 입력하세요.");
+        return;
+      }
+
+      makeCalendar(year, month); // 달력 생성
+    });
+
+    // 달력 생성 함수
+    function makeCalendar(year = 2025, month = 1) {
+      const firstDay = new Date(year, month - 1, 1).getDay(); // 1일의 요일
+      const lastDate = new Date(year, month, 0).getDate(); // 해당 월의 마지막 날
+
+      const days = ['일', '월', '화', '수', '목', '금', '토'];
+      let html = '';
+
+      html += `<table border="1">`;
+      html += `<caption>${year}년 ${month}월</caption>`;
+      html += `<thead><tr>`;
+      for (const day of days) {
+        html += `<th>${day}</th>`;
+      }
+      html += `</tr></thead>`;
+      html += `<tbody><tr>`;
+
+      // 빈 셀 추가 (1일의 요일 전까지)
+      for (let i = 0; i < firstDay; i++) {
+        html += `<td></td>`;
+      }
+
+      // 날짜 추가
+      for (let i = 1; i <= lastDate; i++) {
+        const dayIndex = (i + firstDay - 1) % 7; // 요일 인덱스
+        if (dayIndex === 0) {
+          html += `<td style="background-color: red; color: white">${i}</td>`;
+        } else if (dayIndex === 6) {
+          html += `<td style="background-color: blue; color: white">${i}</td></tr><tr>`;
+        } else {
+          html += `<td>${i}</td>`;
+        }
+      }
+
+      html += `</tr></tbody>`;
+      html += `</table>`;
+
+      // 출력 영역에 생성된 HTML 삽입
+      document.querySelector('#show').innerHTML = html;
+    }
+  </script>
+</body>
+</html>

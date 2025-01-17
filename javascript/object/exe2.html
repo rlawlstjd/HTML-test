@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document2</title>
+</head>
+<body>
+  이름: <input type="text" name="friend" id="" value="홍길동" >
+  점수: <input type="text" name="score" id="" value="80" >  
+  <button name="add">친구추가</button>
+  <button name="remove">친구삭제</button>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>이름</th><th>점수</th>
+      </tr>
+    </thead>
+    <tbody id="list">
+    </tbody>
+  </table>
+  <script>
+
+    
+    //친구추가 이벤트 등록 
+    document.querySelector('button[name="add"]').addEventListener('click', function(){
+      let name = document.querySelector('input[name="friend"]').value
+      let score = document.querySelector('input[name="score"]').value
+      friendAry.push({name, score});  //배열 추가. 
+      makeList(); 
+      document.querySelector('input[name="friend"]').value = ""; // 초기화 . 
+    }); 
+
+  let friendAry = [{name:'정명한', score:80},
+  {name:'김지수', score:70},
+  {name:'고영서', score:85},
+  {name:'이민영', score:74},
+  {name:'정은애', score:95}]; 
+  let targetItem = document.querySelector('#list'); // tbody
+
+  //삭제이벤트 등록 
+  document.querySelector('button[name="remove"]').addEventListener('click', function(){
+    //friendAry.pop() // 배열삭제 . 
+    let searchName = document.querySelector('input[name="friend"]').value; 
+    friendAry = friendAry.filter(function(item, idx, ary){
+      // 이름이 같으면 false, 이름이 다르면 true를 반환 . 
+      if (item.name == searchName){
+        return false; 
+      }
+      return true;
+   }); 
+   console.log(friendAry); 
+    makeList();  
+  });
+
+  /* document.querySelector('button[name="remove"]').addEventListener('click', function(){
+    let target = friendAry.indexOf(document.querySelector('input[name="friend"]').value); 
+    friendAry.splice(target,1); 
+    makeList();
+    //friendAry.splice(0,1); 
+    //makeList(); 
+    // return;  // 함수 종료 
+  */
+    
+    
+    function makeList(){ // 목록이름 출력 메소드 . 
+      let html = '';  
+      friendAry.forEach(function(item, index, ary){
+        html += `<tr><td>${item.name}</td><td>${item.score}</td></tr>`; 
+      }); 
+      targetItem.innerHTML = html;
+    }
+     makeList(); //실행; 
+  </script>
+</body>
+</html>

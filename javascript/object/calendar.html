@@ -6,9 +6,11 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="show"></div>
-  <input type="number" id="calendar">
+  
+   년도 : <input type="number" name="year" value="2025"> 
+  월: <input type="number" id="calendar" value="1">
   <button id="calendar">버튼</button>
+  <div id="show"></div>
   <!-- <table border="1">
     <thead></thead>
     <tbody id="list">
@@ -72,11 +74,19 @@
     // 달력 출력 함수 . 
 
   
-    function makeCalendar(month = 1){
-      
+    function makeCalendar(year= 2025, month = 1){
+      let day = new Date(); // 2025, 1, 17 
+      day.setFullYear(year); 
+      day.setMonth(month-1); 
+      now.setDate(1); 
+      let space = now.getDay(); 
+
+      now.setMonth(month); 
+      now.setDate(0); 
+  
      //let mon = prompt("월을 입력해 주세요")
-      let spaces = getDays(month)
-      let lastDate = getLastDays(month)
+      
+      let lastDate = day.getDate();  
       let days=['일','월','화','수','목','금','토'];
       let html=''
       
