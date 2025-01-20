@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,47 +7,49 @@
 </head>
 <body>
   <label for="year">년도</label>
-  <input type="number" id="year">
+  <input type="number" name="" id="year">
   <label for="month">월</label>
-  <input type="number"  id="month">
+  <input type="number" id="month">
   <button id="calendar">달력생성</button>
   <div id="show"></div>
 
   <script>
     document.querySelector('#calendar').addEventListener('click', function(){
-      let year = document.querySelector('#year').value; 
-      let month = document.querySelector('#month').value; 
+      const year = document.querySelector('#year').value; 
+      const month = document.querySelector('#month').value; 
 
       makeCalendar(year, month); 
     });
 
     function makeCalendar(year=0, month=0){
-      let firstDay = new Date(year, month-1, 1).getDay(); 
-      let lastDay = new Date(year, month, 0).getDate(); 
-
-      let days = ['일', '월', '화', '수', '목', '금', '토']; 
+      const firstDay = new Date(year, month-1, 1).getDay(); 
+      const lastDay = new Date(year, month, 0).getDate(); 
+       
       let html = ''; 
-      html += `<table border="1">`
-      html += `<thead><tr>`
+      let days = ['일', '월', '화', '수', '목', '금', '토']; 
+      //let hollyDay = [{month: 1, days:[1,2,3]}]
 
-      for (let i=0; i<days.length; i++){
+
+      html += `<table border="1"><thead><tr>`
+      
+       for (let i=0; i < days.length; i++){
         html += `<th>${days[i]}</th>`
-      }
+       }
 
-      html += `</tr></thead>`
-      html += `<tbody><tr>`
-
-      for (let i=0; i<firstDay; i++){
+       html += `</tr></thead>`
+       html += `<tbody><tr>`
+      
+      for (let i=0; i< firstDay; i++){
         html += `<td></td>`
       }
 
-      for (let i=1; i<lastDay; i++){
-        const checkDay = (i + firstDay-1 ) % 7
-
+      for (let i=1; i<=lastDay; i++){
+        const checkDay = (i + firstDay -1) % 7 ; 
+        
         if (checkDay == 0){
-          html += `<td style="background-color: red; color: white">${i}</td>`
+          html += `<td style="background-Color: red; color: white">${i}</td>`
         } else if (checkDay == 6){
-          html += `<td style="background-color: blue; color: white">${i}</td></tr><tr>`
+          html += `<td style="background-Color: blue; color: white">${i}</td></tr><tr>`
         } else {
           html += `<td>${i}</td>`
         }
@@ -55,15 +57,11 @@
 
       html += `</tr></tbody></table>`
       
-      document.querySelector('#show').innerHTML = html ; 
-
-
-
-    }
+      document.querySelector('#show').innerHTML = html; 
+  }
 
   </script>
-
-
+  
 
 </body>
 </html>
