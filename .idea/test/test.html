@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    nav ul {
+      display: flex;
+      list-style-type: none;
+    }
+    nav ul li {
+      margin-right: 20px; 
+    }
+    nav ul li:last-child {
+      margin-right: 0;
+    }
+    body {
+      background-repeat: no-repeat;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;  /* 스크롤 방지 */
+    }
+    .background {
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100%; /* 화면 전체 너비 */
+      height: 100%; /* 화면 전체 높이 */
+      background-image: url(/lalaland.jpg); /* 경로 확인 */
+      background-size: cover; 
+      background-position: center;
+      filter: blur(10px);
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div> <!-- 배경 추가 -->
+  <div>
+    <img src="" alt="">
+    <div>
+      <nav>
+        <ul>
+          <li>사업소개</li>
+          <li>직원소개</li>
+          <li>시설구조</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</body>
+</html>
