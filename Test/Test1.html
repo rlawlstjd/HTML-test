@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label for="year">년도</label>
+        <input type="number" name="year" id="year">
+        <label for="month">월</label>
+        <input type="number" name="month" id="month">
+        <button id="Calendar">생성</button>
+    </div>
+    <div id="show">
+
+    </div>
+
+    <script>
+        function makeCalendar (year, month){
+            const firstDay = new Date(year, month-1, 1).getDay(); 
+            const lastDay = new Date(year, month, 0).getDate();
+            
+            const days = ['일', '월', '화', '수', '목', '금', '토']; 
+            let html = ``;  
+            // const로 적용하면 안됨. 
+            html += `<table border="1">`; 
+            html += `<thead><tr>`; 
+            
+            for (let i=0; i<days.length; i++){
+                html += `<th>${days[i]}</th>`; 
+            }
+
+            html += `</tr></thead>`; 
+            html += `<tbody><tr>`; 
+            
+            for (let i=0; i<firstDay; i++){
+                html += `<td></td>`; 
+            }
+
+            for (let i=1; i<=lastDay; i++){
+                const getDate = (i + firstDay -1) % 7; 
+
+                if (getDate === 0){
+                    html += `<td style="background-color : red; color : white;">${i}</td>`
+                } else if (getDate === 6){
+                    html += `<td style="background-color : blue; color : white;">${i}</td></tr><tr>`
+                } else {
+                    html += `<td>${i}</td>`
+                }
+            }
+
+            html += `</tr></tbody></table>`; 
+
+            document.querySelector('#show').innerHTML = html ; 
+        };
+
+        document.querySelector('#Calendar').addEventListener('click', function(){
+            let month = document.querySelector('#month').value; 
+            let year = document.querySelector('#year').value; 
+
+            if (isNaN(month) | isNaN(year) | month < 1 | month > 12){
+                alert("날짜를 확인해 주세요"); 
+            }
+
+            makeCalendar(year, month); 
+        });
+
+        
+    </script>
+</body>
+</html>
